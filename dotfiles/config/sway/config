@@ -44,8 +44,8 @@ exec gsettings set org.gnome.desktop.interface font-name 'Sans 10
 ##-- Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg ~/Pictures/backgrounds/bganime-hd.png fill
-output * bg ~/Pictures/backgrounds/anime-eye-nord.png fill
+#output * bg ~/Wallpapers/bganime-hd.png fill
+output * bg ~/Wallpapers/banime-eye-nord.png fill
 #
 # Example configuration:
 #
@@ -101,15 +101,26 @@ gaps inner 4
 
 ##-- Autostart
 
-#exec_always --no-startup-id 	"/usr/libexec/xfce-polkit &"
+#exec_always --no-startup-id 	"/usr/libexec/policykit-1-gnome &"
 exec_always --no-startup-id 	~/.config/sway/bin/autostart.sh
 exec_always nm-applet --indicator &
 exec --no-startup-id autotiling &
 exec_always --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 xwayland enable
 
+##-- Key bindings, shortcut & menu
+
+# Terminal
+
+bindsym $mod+Return exec terminator
 
 
+# Browser
+bindsym $mod+p exec firefox
+bindsym $mod+t exec kitty
+
+# File
+bindsym $mod+o exec thunar
 
 ### Idle configuration
 #
@@ -130,20 +141,10 @@ exec swayidle -w \
 
 ##-- Key bindings, shortcut & menu
 
-# Terminal
-set $term kitty
-bindsym $mod+Return exec $term
-
-# Browser
-bindsym $mod+o exec brave-browser
-
-# File
-bindsym $mod+p exec nemo
-
 # Rofi Menu
 bindsym $mod+d					exec --no-startup-id ~/.config/sway/rofi/bin/launcher
 bindsym $mod+n 					exec --no-startup-id ~/.config/sway/rofi/bin/network_menu
-bindsym $mod+x 					exec --no-startup-id ~/.config/sway/rofi/bin/powermenu
+#bindsym $mod+x 					exec --no-startup-id ~/.config/sway/rofi/bin/powermenu
 bindsym $mod+m 					exec --no-startup-id ~/.config/sway/rofi/bin/mpd
 bindsym $mod+s 					exec --no-startup-id ~/.config/sway/rofi/bin/screenshot
 bindsym $mod+r 					exec --no-startup-id ~/.config/sway/rofi/bin/asroot
